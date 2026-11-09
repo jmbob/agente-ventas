@@ -74,6 +74,31 @@ copy .env.example .env
 .venv\Scripts\python agente_ventas.py
 ```
 
+## Interfaz web
+
+Además de la consola, el agente tiene una interfaz web de chat (FastAPI con
+respuestas en streaming). Arráncala con:
+
+```sh
+python web.py
+```
+
+y abre <http://127.0.0.1:8000>. En Windows sin contenedor usa
+`.venv\Scripts\python web.py`. Opciones: `--port`, `--host` y `--modelo`.
+Dentro del contenedor usa `python web.py --host 0.0.0.0` para que VS Code pueda
+reenviar el puerto.
+
+Cada pestaña del navegador mantiene su propia conversación; el botón
+**Nueva conversación** empieza de cero. Las consultas SQL que lanza el agente
+se pueden desplegar encima de cada respuesta.
+
+Estructura:
+
+- `agente_core.py`: prompt, herramienta `query_sales` y creación de sesiones.
+- `agente_ventas.py`: interfaz de consola.
+- `web.py`: servidor web (`/api/chat` devuelve eventos SSE).
+- `static/`: frontend (HTML, CSS y JS sin compilación).
+
 ## Detalles
 
 Usa OpenRouter con el modelo `deepseek/deepseek-v4.1-flash`; puedes elegir otro
@@ -88,5 +113,3 @@ desarrollo ya lo trae predescargado).
 
 La base SQLite se abre en modo de solo lectura y se devuelven como máximo 100
 filas por consulta.
-
-La versión con interfaz web vive en la rama `codex/web`.

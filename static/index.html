@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agente de ventas</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">📊</span>
+      <div>
+        <h1>Agente de ventas</h1>
+        <p class="subtitle">Pregunta en lenguaje natural sobre <code>sales_data.db</code> · <span id="model">…</span></p>
+      </div>
+    </div>
+    <button id="reset" class="ghost" type="button" title="Empezar una conversación nueva">Nueva conversación</button>
+  </header>
+
+  <main id="chat" class="chat" aria-live="polite">
+    <section id="welcome" class="welcome">
+      <h2>¿Qué quieres saber de las ventas?</h2>
+      <p>El agente traduce tu pregunta a SQL, consulta la base y te responde. Prueba con:</p>
+      <div class="suggestions">
+        <button type="button" class="suggestion">¿Cuál es el top 5 de tiendas por ventas totales?</button>
+        <button type="button" class="suggestion">¿Qué porcentaje de las ventas se hizo en promoción?</button>
+        <button type="button" class="suggestion">¿Cuál fue el mes con más unidades vendidas?</button>
+        <button type="button" class="suggestion">¿Qué rango de fechas cubren los datos?</button>
+      </div>
+    </section>
+  </main>
+
+  <form id="composer" class="composer">
+    <textarea id="input" rows="1" placeholder="Escribe tu pregunta… (Enter para enviar, Shift+Enter para salto de línea)" required></textarea>
+    <button id="send" type="submit">Enviar</button>
+  </form>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
